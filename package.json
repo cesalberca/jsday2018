@@ -1,0 +1,25 @@
+{
+  "name": "advanced-javascript-patterns",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://www.github.com/cesalberca/advanced-javascript-patterns.git",
+  "author": "César Alberca",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/jest": "^23.3.0",
+    "babel-core": "6.26.3",
+    "babel-jest": "23.4.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "5.2.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-jest": "^21.18.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "jest": "23.4.1",
+    "prettier": "1.13.7"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "prettier --config ./prettier.config.js --write \"{src,__{tests,mocks}__}/**/*.js\""
+  }
+}
