@@ -11,7 +11,7 @@ export function createSimpleProxy(target) {
 }
 
 export function createLoggerProxy(target, log, logger = console, { level } = { level: 'log' }) {
-  const message = `${new Date().toLocaleString('es-ES')} [${capitalize(typeof target)} ${log}]`
+  const message = `${new Date().toISOString()} [${capitalize(typeof target)} ${log}]`
 
   const handler = {
     get(target, prop) {
