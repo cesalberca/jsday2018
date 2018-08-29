@@ -1,4 +1,4 @@
-import { capitalize } from './propValidator'
+import { capitalize } from '../propValidator'
 
 describe('propValidator', () => {
   test('debe lanzar un error cuando un parámetro es obligatorio', () => {

@@ -1,5 +1,5 @@
-import { createLoggerProxy, createSimpleProxy } from './proxies'
-import { asyncCapitalize, capitalize } from "../defaultParameters/propValidator";
+import { createLoggerProxy, createSimpleProxy } from '../proxies'
+import { asyncCapitalize, capitalize } from '../../defaultParameters/propValidator'
 
 describe('proxies', () => {
   const RealDate = Date
@@ -32,11 +32,13 @@ describe('proxies', () => {
       error: jest.fn()
     }
 
-    const functionLogger = createLoggerProxy(capitalize, `Capitalize`, loggerStub, { level: 'error' })
+    const functionLogger = createLoggerProxy(capitalize, loggerStub, { level: 'error' })
 
     functionLogger('test')
 
-    expect(loggerStub.error).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Function Capitalize] (Args: test) {Result: Test}')
+    expect(loggerStub.error).toHaveBeenCalledWith(
+      '2018-10-10T12:34:56.000Z [Function capitalize] (Args: test) {Result: Test}'
+    )
   })
 
   test('createLoggerProxy debería hacer un log cuando se accede a una propiedad de un objeto', () => {
@@ -45,11 +47,11 @@ describe('proxies', () => {
       warn: jest.fn()
     }
 
-    const objectLogger = createLoggerProxy({ a: 1 }, `Object`, loggerStub, { level: 'warn' })
+    const objectLogger = createLoggerProxy({ a: 1 }, loggerStub, { level: 'warn' })
 
     objectLogger.a
 
-    expect(loggerStub.warn).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object Object] (Prop: a) {Result: 1}')
+    expect(loggerStub.warn).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object undefined] (Prop: a) {Result: 1}')
   })
 
   test('createLoggerProxy debería hacer un log cuando se accede a un elemento de un array', () => {
@@ -58,11 +60,11 @@ describe('proxies', () => {
       log: jest.fn()
     }
 
-    const arrayLogger = createLoggerProxy([1, 2], `Array`, loggerStub, { level: 'log' })
+    const arrayLogger = createLoggerProxy([1, 2], loggerStub, { level: 'log' })
 
     arrayLogger[0]
 
-    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object Array] (Prop: 0) {Result: 1}')
+    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object undefined] (Prop: 0) {Result: 1}')
   })
 
   test('createLoggerProxy debería hacer un log cuando se ejecuta una función asíncrona', async () => {
@@ -73,11 +75,11 @@ describe('proxies', () => {
       timeEnd: jest.fn()
     }
 
-    const asyncFunctionLogger = createLoggerProxy(asyncCapitalize, `AsyncCapitalize`, loggerStub)
+    const asyncFunctionLogger = createLoggerProxy(asyncCapitalize, loggerStub)
 
     await asyncFunctionLogger('test')
 
-    expect(loggerStub.time).toHaveBeenCalledWith()
-    expect(loggerStub.timeEnd).toHaveBeenCalledWith()
+    expect(loggerStub.time).toHaveBeenCalledWith('Execution in')
+    expect(loggerStub.timeEnd).toHaveBeenCalledWith('Execution in')
   })
 })

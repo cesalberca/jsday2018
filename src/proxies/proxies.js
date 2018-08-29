@@ -10,8 +10,8 @@ export function createSimpleProxy(target) {
   return new Proxy(target, handler)
 }
 
-export function createLoggerProxy(target, log, logger = console, { level } = { level: 'log' }) {
-  const message = `${new Date().toISOString()} [${capitalize(typeof target)} ${log}]`
+export function createLoggerProxy(target, logger = console, { level } = { level: 'log' }) {
+  const message = `${new Date().toISOString()} [${capitalize(typeof target)} ${target.name}]`
 
   const handler = {
     get(target, prop) {
@@ -33,8 +33,9 @@ export function createLoggerProxy(target, log, logger = console, { level } = { l
 async function handleResult(result, logger = console) {
   const isResultAPromise = Promise.resolve(result) == result
   if (isResultAPromise) {
-    logger.time()
+    const label = 'Execution in'
+    logger.time(label)
     await result
-    logger.timeEnd()
+    logger.timeEnd(label)
   }
 }

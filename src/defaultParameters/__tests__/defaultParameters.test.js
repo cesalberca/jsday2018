@@ -2,7 +2,7 @@ import {
   defaultParameters,
   defaultParametersWithDestructuring,
   defaultParametersWithExpression
-} from './defaultParameters'
+} from '../defaultParameters'
 
 describe('parámetros por defecto', () => {
   test('retorna la suma de dos valores cuando estos son pasados por parámetros', () => {

@@ -7,7 +7,7 @@ export function capitalize(string = isRequired()) {
 }
 
 export async function asyncCapitalize(string = isRequired()) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve(capitalize(string))
     }, 1000)
