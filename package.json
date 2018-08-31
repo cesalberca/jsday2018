@@ -23,7 +23,7 @@
     "prettier": "1.14.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "prettier --config ./prettier.config.js --write \"{src,__{tests,mocks}__}/**/*.js\"",
     "build": "babel src -d dist"
   }

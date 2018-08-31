@@ -1,6 +1,6 @@
 module.exports = {
   clearMocks: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov'],
+  coverageReporters: ['lcov', 'text-summary'],
   testMatch: ['<rootDir>/(/**/*.spec.(js)|**/__tests__/*.(js))'],
 }
