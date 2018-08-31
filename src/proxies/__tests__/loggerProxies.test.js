@@ -1,4 +1,4 @@
-import { createLoggerProxy, createSimpleProxy } from '../proxies'
+import { createLoggerProxy, createSimpleProxy } from '../loggerProxies'
 import { asyncCapitalize, capitalize } from '../../defaultParameters/propValidator'
 
 describe('proxies', () => {
