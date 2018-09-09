@@ -15,9 +15,8 @@ export function createLoggerProxy(target, logger = console, { level } = { level:
 
   const handler = {
     get(target, prop) {
-      const result = target[prop]
-      logger[level](`${message} (Prop: ${prop}) {Result: ${result}}`)
-      return result
+      logger[level](`${message} (Prop: ${prop}) {Result: ${target[prop]}}`)
+      return Reflect.get(...arguments)
     },
     apply(target, thisArgument, listOfArguments) {
       const result = target(...listOfArguments)
