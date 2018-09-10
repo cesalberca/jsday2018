@@ -1,4 +1,4 @@
-import { createLoggerProxy, createSimpleProxy } from '../loggerProxies'
+import { createLogger, createSimpleProxy } from '../logger'
 import { asyncCapitalize, capitalize } from '../../defaultParameters/propValidator'
 
 describe('proxies', () => {
@@ -26,13 +26,13 @@ describe('proxies', () => {
     expect(proxy.a).toBe(expectedResult)
   })
 
-  test('createLoggerProxy debería hacer un log cuando se ejecuta una función', () => {
+  test('createLogger debería hacer un log cuando se ejecuta una función', () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
       error: jest.fn()
     }
 
-    const functionLogger = createLoggerProxy(capitalize, loggerStub, { level: 'error' })
+    const functionLogger = createLogger(capitalize, loggerStub, { level: 'error' })
 
     functionLogger('test')
 
@@ -41,33 +41,33 @@ describe('proxies', () => {
     )
   })
 
-  test('createLoggerProxy debería hacer un log cuando se accede a una propiedad de un objeto', () => {
+  test('createLogger debería hacer un log cuando se accede a una propiedad de un objeto', () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
       warn: jest.fn()
     }
 
-    const objectLogger = createLoggerProxy({ a: 1 }, loggerStub, { level: 'warn' })
+    const objectLogger = createLogger({ a: 1 }, loggerStub, { level: 'warn' })
 
     objectLogger.a
 
     expect(loggerStub.warn).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object undefined] (Prop: a) {Result: 1}')
   })
 
-  test('createLoggerProxy debería hacer un log cuando se accede a un elemento de un array', () => {
+  test('createLogger debería hacer un log cuando se accede a un elemento de un array', () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
       log: jest.fn()
     }
 
-    const arrayLogger = createLoggerProxy([1, 2], loggerStub, { level: 'log' })
+    const arrayLogger = createLogger([1, 2], loggerStub, { level: 'log' })
 
     arrayLogger[0]
 
     expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object undefined] (Prop: 0) {Result: 1}')
   })
 
-  test('createLoggerProxy debería hacer un log cuando se ejecuta una función asíncrona', async () => {
+  test('createLogger debería hacer un log cuando se ejecuta una función asíncrona', async () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
       log: jest.fn(),
@@ -75,7 +75,7 @@ describe('proxies', () => {
       timeEnd: jest.fn()
     }
 
-    const asyncFunctionLogger = createLoggerProxy(asyncCapitalize, loggerStub)
+    const asyncFunctionLogger = createLogger(asyncCapitalize, loggerStub)
 
     await asyncFunctionLogger('test')
 

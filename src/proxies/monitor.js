@@ -1,9 +1,9 @@
 import '@babel/polyfill'
 
-import { createLoggerProxy } from './loggerProxies'
+import { createLogger } from './logger'
 import { asyncCapitalize } from '../defaultParameters/propValidator'
 ;(() => {
-  const asyncFunctionLogger = createLoggerProxy(asyncCapitalize)
+  const asyncFunctionLogger = createLogger(asyncCapitalize)
 
   asyncFunctionLogger('test')
 })()

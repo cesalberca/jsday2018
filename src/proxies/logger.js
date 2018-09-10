@@ -10,7 +10,7 @@ export function createSimpleProxy(target) {
   return new Proxy(target, handler)
 }
 
-export function createLoggerProxy(target, logger = console, { level } = { level: 'log' }) {
+export function createLogger(target, logger = console, { level } = { level: 'log' }) {
   const message = `${new Date().toISOString()} [${capitalize(typeof target)} ${target.name}]`
 
   const handler = {

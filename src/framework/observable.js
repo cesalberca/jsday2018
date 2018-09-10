@@ -1,13 +1,12 @@
 const observers = new Map()
-let currentObserver
-
 const queuedObservers = new Set()
+let currentObserver
 
 export function observe(fn) {
   queueObserver(fn)
 }
 
-export function observable(obj) {
+export function createObservable(obj) {
   observers.set(obj, new Map())
   return new Proxy(obj, {
     get,
@@ -41,7 +40,7 @@ function get(target, key, receiver) {
   if (currentObserver) {
     registerObserver(target, key, currentObserver)
     if (typeof result === 'object') {
-      const observableResult = observable(result)
+      const observableResult = createObservable(result)
       Reflect.set(target, key, observableResult, receiver)
       return observableResult
     }
@@ -61,7 +60,7 @@ function registerObserver(target, key, observer) {
 function set(target, key, value, receiver) {
   const observersForKey = observers.get(target).get(key)
   if (observersForKey) {
-    observersForKey.forEach(queueObserver)
+    observersForKey.forEach(observer => queueObserver(observer))
   }
   return Reflect.set(target, key, value, receiver)
 }

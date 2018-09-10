@@ -1,10 +1,10 @@
-import { observe, observable } from '../Observable'
+import { observe, createObservable } from '../observable'
 import { flushPromises } from '../../../tests/utils/flushPromises'
 
 describe('Observable', () => {
   test('se ejecuta la función descrita de nuevo cuando el valor observado cambia', async () => {
     expect.assertions(2)
-    const person = observable({ name: 'John' })
+    const person = createObservable({ name: 'John' })
 
     const stub = jest.fn(() => person.name)
 
@@ -19,7 +19,7 @@ describe('Observable', () => {
 
   test('se pueden observar con varias funciones', async () => {
     expect.assertions(4)
-    const person = observable({ name: 'Marta' })
+    const person = createObservable({ name: 'Marta' })
 
     const stub = jest.fn(() => person.name)
     const stub2 = jest.fn(() => person.name)
@@ -38,7 +38,7 @@ describe('Observable', () => {
 
   test('funciona con Arrays', async () => {
     expect.assertions(2)
-    const person = observable({ jobs: ['developer', 'designer'] })
+    const person = createObservable({ jobs: ['developer', 'designer'] })
     const stub = jest.fn(() => person.jobs)
 
     observe(stub)
@@ -54,7 +54,7 @@ describe('Observable', () => {
     expect.assertions(2)
     jest.useFakeTimers();
 
-    const person = observable({ name: 'Sara' })
+    const person = createObservable({ name: 'Sara' })
     const stub = jest.fn(() => person.name)
 
     observe(stub)
@@ -71,7 +71,7 @@ describe('Observable', () => {
   test('se pueden añadir propiedades dinámicamente', async () => {
     expect.assertions(2)
 
-    const person = observable({ name: 'Sara' })
+    const person = createObservable({ name: 'Sara' })
     const stub = jest.fn(() => person.gender)
 
     observe(stub)

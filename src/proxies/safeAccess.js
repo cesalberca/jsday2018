@@ -12,15 +12,17 @@ export const Undefined = new Proxy(
 
 export const either = (value, fallback) => (value === Undefined ? fallback : value)
 
-export function createSafeProxy(obj) {
+export function createSafe(obj) {
   return new Proxy(obj, {
     get(target, name) {
       if (hasKey(target, name)) {
-        if (isObject(target[name])) {
-          return createSafeProxy(target[name])
+        const targetElement = target[name]
+
+        if (isObject(targetElement)) {
+          return createSafe(targetElement)
         }
 
-        return target[name]
+        return targetElement
       }
 
       return Undefined

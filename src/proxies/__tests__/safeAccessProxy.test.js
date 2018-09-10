@@ -1,4 +1,4 @@
-import { createSafeProxy, either } from '../safeAccessProxy'
+import { createSafe, either } from '../safeAccess'
 
 describe('safeAccessProxy', () => {
   test('debería lanzar una excepción cuando se acceden a propiedades no existentes de un objeto', () => {
@@ -15,7 +15,7 @@ describe('safeAccessProxy', () => {
   })
 
   test('debería poder acceder a propiedades existentes de un objeto', () => {
-    const safeObj = createSafeProxy({
+    const safeObj = createSafe({
       foo: 'bar',
       baz: {
         qux: 'quux'
@@ -26,7 +26,7 @@ describe('safeAccessProxy', () => {
   })
 
   test('no debería lanzar una excepción cuando se acceden a propiedades no existentes de un objeto', () => {
-    const safeObj = createSafeProxy({
+    const safeObj = createSafe({
       foo: 'bar',
       baz: {
         qux: 'quux'
@@ -39,7 +39,7 @@ describe('safeAccessProxy', () => {
   })
 
   test('no debería lanzar una excepción cuando se acceden a propiedades anidadas no existentes de un objeto', () => {
-    const safeObj = createSafeProxy({
+    const safeObj = createSafe({
       foo: 'bar',
       baz: {
         qux: 'quux'
@@ -52,7 +52,7 @@ describe('safeAccessProxy', () => {
   })
 
   test('puede tener valores por defecto', () => {
-    const safeObj = createSafeProxy({
+    const safeObj = createSafe({
       foo: 'bar',
       baz: {
         qux: 'quux'
