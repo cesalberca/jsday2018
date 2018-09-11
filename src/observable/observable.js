@@ -67,5 +67,5 @@ function runObserver(observer) {
 }
 
 function getObserversKey(target, key) {
-  return observers.get(target).get(key);
+  return observers.get(target).get(key)
 }

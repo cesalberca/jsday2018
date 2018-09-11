@@ -1,18 +1,8 @@
 import { createLogger, createSimpleProxy } from '../logger'
 import { asyncCapitalize, capitalize } from '../../defaultParameters/propValidator'
+import { mockDate, RealDate } from '../../../tests/utils/mockDate'
 
 describe('proxies', () => {
-  const RealDate = Date
-
-  function mockDate(isoDate) {
-    global.Date = class extends RealDate {
-      constructor() {
-        super()
-        return new RealDate(isoDate)
-      }
-    }
-  }
-
   afterEach(() => {
     global.Date = RealDate
   })

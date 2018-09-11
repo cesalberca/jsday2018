@@ -1,7 +1,7 @@
 import { observe, createObservable } from '../observable'
 import { flushPromises } from '../../../tests/utils/flushPromises'
 
-describe(__filename, () => {
+describe('observable', () => {
   test('se ejecuta la función descrita de nuevo cuando el valor observado cambia', async () => {
     expect.assertions(2)
     const person = createObservable({ name: 'John' })
@@ -78,16 +78,16 @@ describe(__filename, () => {
 
   test('funciona asíncronamente', async () => {
     expect.assertions(2)
-    jest.useFakeTimers();
+    jest.useFakeTimers()
 
     const person = createObservable({ name: 'Sara' })
     const stub = jest.fn(() => person.name)
 
     observe(stub)
 
-    setTimeout(() => person.name = 'James', 1000)
+    setTimeout(() => (person.name = 'James'), 1000)
 
-    jest.runAllTimers();
+    jest.runAllTimers()
     await flushPromises()
 
     expect(stub).toHaveBeenCalled()
