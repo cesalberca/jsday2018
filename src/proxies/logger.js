@@ -10,18 +10,18 @@ export function createSimpleProxy(target) {
   return new Proxy(target, handler)
 }
 
-export function createLogger(target, logger = console, { level } = { level: 'log' }) {
+export function createLogger(target, logger = console) {
   const message = `${new Date().toISOString()} [${capitalize(typeof target)} ${target.name}]`
 
   const handler = {
     get(target, prop) {
-      logger[level](`${message} (Prop: ${prop}) {Result: ${target[prop]}}`)
+      logger.log(`${message} (Prop: ${prop}) {Result: ${target[prop]}}`)
       return Reflect.get(...arguments)
     },
     apply(target, thisArgument, listOfArguments) {
       const result = target(...listOfArguments)
       handleResult(result, logger)
-      logger[level](`${message} (Args: ${listOfArguments}) {Result: ${result}}`)
+      logger.log(`${message} (Args: ${listOfArguments}) {Result: ${result}}`)
       return result
     }
   }

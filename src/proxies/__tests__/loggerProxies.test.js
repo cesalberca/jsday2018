@@ -19,14 +19,14 @@ describe('proxies', () => {
   test('createLogger debería hacer un log cuando se ejecuta una función', () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
-      error: jest.fn()
+      log: jest.fn()
     }
 
-    const functionLogger = createLogger(capitalize, loggerStub, { level: 'error' })
+    const functionLogger = createLogger(capitalize, loggerStub)
 
     functionLogger('test')
 
-    expect(loggerStub.error).toHaveBeenCalledWith(
+    expect(loggerStub.log).toHaveBeenCalledWith(
       '2018-10-10T12:34:56.000Z [Function capitalize] (Args: test) {Result: Test}'
     )
   })
@@ -34,14 +34,14 @@ describe('proxies', () => {
   test('createLogger debería hacer un log cuando se accede a una propiedad de un objeto', () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
-      warn: jest.fn()
+      log: jest.fn()
     }
 
-    const objectLogger = createLogger({ a: 1 }, loggerStub, { level: 'warn' })
+    const objectLogger = createLogger({ a: 1 }, loggerStub)
 
     objectLogger.a
 
-    expect(loggerStub.warn).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object undefined] (Prop: a) {Result: 1}')
+    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object undefined] (Prop: a) {Result: 1}')
   })
 
   test('createLogger debería hacer un log cuando se accede a un elemento de un array', () => {
@@ -50,7 +50,7 @@ describe('proxies', () => {
       log: jest.fn()
     }
 
-    const arrayLogger = createLogger([1, 2], loggerStub, { level: 'log' })
+    const arrayLogger = createLogger([1, 2], loggerStub)
 
     arrayLogger[0]
 
