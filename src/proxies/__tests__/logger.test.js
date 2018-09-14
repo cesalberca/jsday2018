@@ -1,19 +1,10 @@
-import { createLogger, createSimpleProxy } from '../logger'
+import { createLogger } from '../logger'
 import { asyncCapitalize, capitalize } from '../../defaultParameters/propValidator'
 import { mockDate, RealDate } from '../../../tests/utils/mockDate'
 
 describe('proxies', () => {
   afterEach(() => {
     global.Date = RealDate
-  })
-
-  test('createSimpleProxy debería hacer que el retorno de cualquier propiedad sea 1', () => {
-    const expectedResult = 1
-    const target = { a: 2 }
-
-    const proxy = createSimpleProxy(target)
-
-    expect(proxy.a).toBe(expectedResult)
   })
 
   test('createLogger debería hacer un log cuando se ejecuta una función', () => {
@@ -27,7 +18,7 @@ describe('proxies', () => {
     functionLogger('test')
 
     expect(loggerStub.log).toHaveBeenCalledWith(
-      '2018-10-10T12:34:56.000Z [Function capitalize] (Args: test) {Result: Test}'
+      '2018-10-10T12:34:56.000Z [Function] capitalize (Args: test) {Result: Test}'
     )
   })
 
@@ -41,7 +32,7 @@ describe('proxies', () => {
 
     objectLogger.a
 
-    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object undefined] (Prop: a) {Result: 1}')
+    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object] (Prop: a) {Result: 1}')
   })
 
   test('createLogger debería hacer un log cuando se accede a un elemento de un array', () => {
@@ -54,7 +45,7 @@ describe('proxies', () => {
 
     arrayLogger[0]
 
-    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object undefined] (Prop: 0) {Result: 1}')
+    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object] (Prop: 0) {Result: 1}')
   })
 
   test('createLogger debería hacer un log cuando se ejecuta una función asíncrona', async () => {

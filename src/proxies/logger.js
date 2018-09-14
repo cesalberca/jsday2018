@@ -1,17 +1,7 @@
 import { capitalize } from '../defaultParameters/propValidator'
 
-export function createSimpleProxy(target) {
-  const handler = {
-    get() {
-      return 1
-    }
-  }
-
-  return new Proxy(target, handler)
-}
-
 export function createLogger(target, logger = console) {
-  const message = `${new Date().toISOString()} [${capitalize(typeof target)} ${target.name}]`
+  const message = `${new Date().toISOString()} [${capitalize(typeof target)}]`
 
   const handler = {
     get(target, prop) {
@@ -21,7 +11,7 @@ export function createLogger(target, logger = console) {
     apply(target, thisArgument, listOfArguments) {
       const result = target(...listOfArguments)
       handleResult(result, logger)
-      logger.log(`${message} (Args: ${listOfArguments}) {Result: ${result}}`)
+      logger.log(`${message} ${target.name} (Args: ${listOfArguments}) {Result: ${result}}`)
       return result
     }
   }
