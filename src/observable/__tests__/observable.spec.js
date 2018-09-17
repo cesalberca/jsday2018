@@ -50,7 +50,7 @@ describe('observable', () => {
     expect(stub2).toHaveReturnedWith('Laura')
   })
 
-  test('funciona con Arrays', async () => {
+  test('funciona cuando pusheamos un elemento en un array', async () => {
     expect.assertions(1)
     const person = createObservable({ jobs: ['developer', 'designer'] })
     const stub = jest.fn(() => person.jobs)
@@ -58,6 +58,19 @@ describe('observable', () => {
     observe(stub)
 
     person.jobs.push('ninja')
+
+    await flushPromises()
+    expect(stub).toHaveBeenCalled()
+  })
+
+  test('funciona cuando sobreescribimos un elemento en un array', async () => {
+    expect.assertions(1)
+    const person = createObservable({ jobs: ['developer', 'designer'] })
+    const stub = jest.fn(() => person.jobs)
+
+    observe(stub)
+
+    person.jobs[0] = 'ninja'
 
     await flushPromises()
     expect(stub).toHaveBeenCalled()
