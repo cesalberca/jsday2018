@@ -10,7 +10,7 @@ export function createLogger(target, logger = console) {
     },
     apply(target, thisArgument, listOfArguments) {
       const result = target(...listOfArguments)
-      handleResult(result, logger)
+      handleResult(result, target.name, logger)
       logger.log(`${message} ${target.name} (Args: ${listOfArguments}) {Result: ${result}}`)
       return result
     }
@@ -19,10 +19,10 @@ export function createLogger(target, logger = console) {
   return new Proxy(target, handler)
 }
 
-async function handleResult(result, logger = console) {
+async function handleResult(result, name, logger = console) {
   const isResultAPromise = Promise.resolve(result) == result
   if (isResultAPromise) {
-    const label = 'Execution in'
+    const label = `Execution of ${name} in`
     logger.time(label)
     await result
     logger.timeEnd(label)

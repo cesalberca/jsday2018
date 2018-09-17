@@ -2,7 +2,7 @@ import { createLogger } from '../logger'
 import { asyncCapitalize, capitalize } from '../../defaultParameters/propValidator'
 import { mockDate, RealDate } from '../../../tests/utils/mockDate'
 
-describe('proxies', () => {
+describe('logger', () => {
   afterEach(() => {
     global.Date = RealDate
   })
@@ -60,7 +60,7 @@ describe('proxies', () => {
 
     await asyncFunctionLogger('test')
 
-    expect(loggerStub.time).toHaveBeenCalledWith('Execution in')
-    expect(loggerStub.timeEnd).toHaveBeenCalledWith('Execution in')
+    expect(loggerStub.time).toHaveBeenCalledWith('Execution of asyncCapitalize in')
+    expect(loggerStub.timeEnd).toHaveBeenCalledWith('Execution of asyncCapitalize in')
   })
 })

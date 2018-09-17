@@ -1,5 +1,5 @@
 import { pipe } from '../pipe'
-import { createSafe, Undefined } from '../../proxies/safeAccess'
+import { createSafe, notDefined } from '../../proxies/safeAccess'
 import { createLogger } from '../../proxies/logger'
 import { createObservable, observe } from '../../observable/observable'
 import { flushPromises } from '../../../tests/utils/flushPromises'
@@ -78,7 +78,7 @@ describe('pipe', () => {
     )
     const safeObservableLoggerObject = safeObservableLogger(person)
 
-    expect(safeObservableLoggerObject.vehicles.tesla).toBe(Undefined)
+    expect(safeObservableLoggerObject.vehicles.tesla).toBe(notDefined)
   })
 
   test('es un proxy observable', async () => {

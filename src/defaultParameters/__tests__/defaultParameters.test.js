@@ -4,7 +4,7 @@ import {
   defaultParametersWithExpression
 } from '../defaultParameters'
 
-describe('parámetros por defecto', () => {
+describe('defaultParameters', () => {
   test('retorna la suma de dos valores cuando estos son pasados por parámetros', () => {
     expect(defaultParameters(1, 2)).toBe(3)
   })

@@ -1,6 +1,6 @@
 import { createSafe, either } from '../safeAccess'
 
-describe('safeAccessProxy', () => {
+describe('safeAccess', () => {
   test('debería lanzar una excepción cuando se acceden a propiedades no existentes de un objeto', () => {
     const obj = {
       foo: 'bar',

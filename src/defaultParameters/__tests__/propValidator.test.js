@@ -7,9 +7,9 @@ describe('propValidator', () => {
     }).toThrowError()
   })
 
-  test('no debería lanzar error cuando el parámetro es nulo', () => {
+  test('no debería lanzar error cuando el parámetro recibe un valor', () => {
     expect(() => {
-      capitalize(null)
-    }).toThrowError()
+      capitalize('a')
+    }).not.toThrowError()
   })
 })

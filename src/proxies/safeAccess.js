@@ -1,19 +1,19 @@
 const isObject = obj => obj && typeof obj === 'object'
 const hasKey = (obj, key) => key in obj
 
-export const Undefined = new Proxy(
+export const notDefined = new Proxy(
   {},
   {
     get() {
-      return Undefined
+      return notDefined
     }
   }
 )
 
-export const either = (value, fallback) => (value === Undefined ? fallback : value)
+export const either = (value, fallback) => (value === notDefined ? fallback : value)
 
-export function createSafe(obj) {
-  return new Proxy(obj, {
+export function createSafe(target) {
+  const handler = {
     get(target, name) {
       if (hasKey(target, name)) {
         const targetElement = target[name]
@@ -25,7 +25,9 @@ export function createSafe(obj) {
         return targetElement
       }
 
-      return Undefined
+      return notDefined
     }
-  })
+  }
+
+  return new Proxy(target, handler)
 }
