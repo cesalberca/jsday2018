@@ -32,7 +32,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged",
-      "pre-push": "yarn lint --no-fix && yarn test",
+      "pre-push": "prettier --config ./prettier.config.js \"{src,__{tests,mocks}__}/**/*.js\" && yarn test",
       "post-commit": "git update-index -g"
     }
   }
