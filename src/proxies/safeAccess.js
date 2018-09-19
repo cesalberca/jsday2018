@@ -1,4 +1,4 @@
-const isObject = obj => obj && typeof obj === 'object'
+const isObject = obj => typeof obj === 'object'
 const hasKey = (obj, key) => key in obj
 
 export const notDefined = new Proxy(
