@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PinchitoJS</title>
+</head>
+<body>
+</body>
+<script type="module">
+import { Renderer, html } from './main.mjs'
+import { createObservable, observe } from './observable.mjs'
+
+const renderer = new Renderer(document.body)
+const observable = createObservable({ counter: 0 })
+
+observe(() => renderer.render(html`<h1>Counter: ${observable.counter}</h1>`))
+observe(() => console.log(observable.counter))
+
+setInterval(() => {
+  observable.counter++
+}, 1000)
+</script>
+</html>
