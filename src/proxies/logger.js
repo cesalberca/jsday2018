@@ -20,7 +20,6 @@ export function createLogger(target, logger = console) {
 }
 
 async function handleResult(result, name, logger = console) {
-  console.log(1
   const isResultAPromise = Promise.resolve(result) == result
   if (isResultAPromise) {
     const label = `Execution of ${name} in`
