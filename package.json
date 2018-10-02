@@ -15,11 +15,11 @@
     "@types/jest": "23.3.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
-    "eslint": "5.6.0",
-    "eslint-config-prettier": "3.0.1",
-    "eslint-plugin-jest": "21.22.0",
-    "eslint-plugin-prettier": "2.6.2",
-    "husky": "1.0.0-rc.14",
+    "eslint": "5.6.1",
+    "eslint-config-prettier": "3.1.0",
+    "eslint-plugin-jest": "21.24.1",
+    "eslint-plugin-prettier": "3.0.0",
+    "husky": "1.1.0",
     "jest": "23.6.0",
     "prettier": "1.14.3",
     "pretty-quick": "1.7.0"
@@ -32,7 +32,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged",
-      "pre-push": "prettier --config ./prettier.config.js \"{src,__{tests,mocks}__}/**/*.js\" && yarn test",
+      "pre-push": "prettier --list-different --config ./prettier.config.js \"{src,__{tests,mocks}__}/**/*.js\" && yarn test",
       "post-commit": "git update-index -g"
     }
   }
