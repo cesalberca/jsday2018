@@ -2,7 +2,7 @@ import { observe, createObservable } from '../observable'
 import { flushPromises } from '../../../tests/utils/flushPromises'
 
 describe('observable', () => {
-  test('se ejecuta la función descrita de nuevo cuando el valor observado cambia', async () => {
+  test('se ejecuta la función que observa de nuevo cuando el valor observado cambia', async () => {
     expect.assertions(2)
     const person = createObservable({ name: 'John' })
 
@@ -50,7 +50,7 @@ describe('observable', () => {
     expect(stub2).toHaveReturnedWith('Laura')
   })
 
-  test('funciona cuando pusheamos un elemento en un array', async () => {
+  test('funciona cuando añadimos un elemento en un array', async () => {
     expect.assertions(1)
     const person = createObservable({ jobs: ['developer', 'designer'] })
     const stub = jest.fn(() => person.jobs)

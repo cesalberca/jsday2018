@@ -1,3 +1,4 @@
+// Base on https://github.com/nx-js/observer-util
 const observers = new WeakMap()
 const queuedObservers = new Set()
 let currentObserver
