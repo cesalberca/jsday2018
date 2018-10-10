@@ -7,7 +7,7 @@ describe('logger', () => {
     global.Date = RealDate
   })
 
-  test('createLogger debería hacer un log cuando se ejecuta una función', () => {
+  test('hace un log cuando se ejecuta una función', () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
       log: jest.fn()
@@ -22,7 +22,7 @@ describe('logger', () => {
     )
   })
 
-  test('createLogger debería hacer un log cuando se accede a una propiedad de un objeto', () => {
+  test('hace un log cuando se accede a una propiedad de un objeto', () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
       log: jest.fn()
@@ -35,7 +35,7 @@ describe('logger', () => {
     expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object] (Prop: a) {Result: 1}')
   })
 
-  test('createLogger debería hacer un log cuando se accede a un elemento de un array', () => {
+  test('hace un log cuando se accede a un elemento de un array', () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
       log: jest.fn()
@@ -48,7 +48,7 @@ describe('logger', () => {
     expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object] (Prop: 0) {Result: 1}')
   })
 
-  test('createLogger debería hacer un log cuando se ejecuta una función asíncrona', async () => {
+  test('realiza un log cuando se ejecuta una función asíncrona', async () => {
     mockDate('2018-10-10T12:34:56z')
     const loggerStub = {
       log: jest.fn(),

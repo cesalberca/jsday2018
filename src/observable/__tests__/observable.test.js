@@ -3,7 +3,7 @@ import { flushPromises } from '../../../tests/utils/flushPromises'
 
 describe('observable', () => {
   test('se ejecuta la función que observa de nuevo cuando el valor observado cambia', async () => {
-    expect.assertions(2)
+    expect.assertions(1)
     const person = createObservable({ name: 'John' })
 
     const stub = jest.fn(() => person.name)
@@ -14,7 +14,6 @@ describe('observable', () => {
 
     await flushPromises()
     expect(stub).toHaveBeenCalled()
-    expect(stub).toHaveReturnedWith('Dave')
   })
 
   test('cambia el valor interno cuando se muta el objeto', async () => {
@@ -32,7 +31,7 @@ describe('observable', () => {
   })
 
   test('se pueden observar con varias funciones', async () => {
-    expect.assertions(4)
+    expect.assertions(2)
     const person = createObservable({ name: 'Marta' })
 
     const stub = jest.fn(() => person.name)
@@ -46,8 +45,6 @@ describe('observable', () => {
     await flushPromises()
     expect(stub).toHaveBeenCalled()
     expect(stub2).toHaveBeenCalled()
-    expect(stub).toHaveReturnedWith('Laura')
-    expect(stub2).toHaveReturnedWith('Laura')
   })
 
   test('funciona cuando añadimos un elemento en un array', async () => {
@@ -87,37 +84,6 @@ describe('observable', () => {
 
     await flushPromises()
     expect(stub).toHaveBeenCalled()
-  })
-
-  test('funciona asíncronamente', async () => {
-    expect.assertions(2)
-    jest.useFakeTimers()
-
-    const person = createObservable({ name: 'Sara' })
-    const stub = jest.fn(() => person.name)
-
-    observe(stub)
-
-    setTimeout(() => (person.name = 'James'), 1000)
-
-    jest.runAllTimers()
-    await flushPromises()
-
-    expect(stub).toHaveBeenCalled()
-    expect(person.name).toBe('James')
-  })
-
-  test('se pueden añadir propiedades dinámicamente', async () => {
-    expect.assertions(2)
-
-    const person = createObservable({ name: 'Sara' })
-    const stub = jest.fn(() => person.gender)
-
-    observe(stub)
-    person.gender = 'non binary'
-
-    await flushPromises()
-    expect(stub).toHaveBeenCalled()
-    expect(person.gender).toBe('non binary')
+    // empleo@autentia.com
   })
 })

@@ -3,7 +3,7 @@ import { createObservable, observe } from '../../observable/observable'
 import { flushPromises } from '../../../tests/utils/flushPromises'
 
 describe('taggedTemplate', () => {
-  test('retorna el string y un valor ya construido', () => {
+  test('retorna el string y un valor ya interpolado', () => {
     const string = 'World'
     const actual = taggedTemplate`Hello ${string}`
     expect(actual).toEqual('Hello World')

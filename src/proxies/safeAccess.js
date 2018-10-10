@@ -10,8 +10,6 @@ export const notDefined = new Proxy(
   }
 )
 
-export const either = (value, fallback) => (value === notDefined ? fallback : value)
-
 export function createSafe(target) {
   const handler = {
     get(target, name) {
@@ -31,3 +29,5 @@ export function createSafe(target) {
 
   return new Proxy(target, handler)
 }
+
+export const either = (value, fallback) => (value === notDefined ? fallback : value)

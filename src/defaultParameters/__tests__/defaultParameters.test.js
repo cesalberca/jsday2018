@@ -1,8 +1,4 @@
-import {
-  defaultParameters,
-  defaultParametersWithDestructuring,
-  defaultParametersWithExpression
-} from '../defaultParameters'
+import { defaultParameters, defaultParametersWithExpression } from '../defaultParameters'
 
 describe('defaultParameters', () => {
   test('retorna la suma de dos valores cuando estos son pasados por parámetros', () => {
@@ -15,19 +11,6 @@ describe('defaultParameters', () => {
 
   test('si el primer parámetro queremos que coja su valor por defecto podremos pasar undefined', () => {
     expect(defaultParameters(undefined, 3)).toBe(4)
-  })
-
-  test('si el primer parámetro queremos que coja su valor por defecto no podremos pasar null', () => {
-    expect(defaultParameters(null, null)).toBe(0)
-  })
-
-  test('podemos hacer destructuración de objetos con valores por defecto si no pasamos ningún valor', () => {
-    expect(defaultParametersWithDestructuring()).toBe(3)
-  })
-
-  test('podemos hacer destructuración de objetos con valores por defecto si pasamos un valor arbitrario', () => {
-    expect(defaultParametersWithDestructuring({ a: 1 })).toBe(1)
-    expect(defaultParametersWithDestructuring({ b: 1 })).toBe(1)
   })
 
   test('también se puede hacer uso de funciones', () => {

@@ -1,7 +1,7 @@
 import { createSafe, either } from '../safeAccess'
 
 describe('safeAccess', () => {
-  test('debería lanzar una excepción cuando se acceden a propiedades no existentes de un objeto', () => {
+  test('lanza una excepción cuando se acceden a propiedades no existentes de un objeto', () => {
     const obj = {
       foo: 'bar',
       baz: {
@@ -14,7 +14,7 @@ describe('safeAccess', () => {
     }).toThrowError()
   })
 
-  test('debería poder acceder a propiedades existentes de un objeto', () => {
+  test('se puede acceder a propiedades existentes de un objeto', () => {
     const safeObj = createSafe({
       foo: 'bar',
       baz: {
@@ -25,7 +25,7 @@ describe('safeAccess', () => {
     expect(safeObj.foo).toEqual('bar')
   })
 
-  test('no debería lanzar una excepción cuando se acceden a propiedades no existentes de un objeto', () => {
+  test('no lanza excepción cuando se acceden a propiedades no existentes de un objeto', () => {
     const safeObj = createSafe({
       foo: 'bar',
       baz: {
@@ -38,7 +38,7 @@ describe('safeAccess', () => {
     }).not.toThrowError()
   })
 
-  test('no debería lanzar una excepción cuando se acceden a propiedades anidadas no existentes de un objeto', () => {
+  test('no lanza excepción cuando se acceden a propiedades anidadas no existentes de un objeto', () => {
     const safeObj = createSafe({
       foo: 'bar',
       baz: {
