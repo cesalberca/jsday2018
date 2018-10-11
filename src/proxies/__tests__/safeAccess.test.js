@@ -2,63 +2,63 @@ import { createSafe, either } from '../safeAccess'
 
 describe('safeAccess', () => {
   test('lanza una excepción cuando se acceden a propiedades no existentes de un objeto', () => {
-    const obj = {
-      foo: 'bar',
-      baz: {
-        qux: 'quux'
+    const person = {
+      name: 'César',
+      company: {
+        name: 'Autentia'
       }
     }
 
     expect(() => {
-      obj.qux.quux
+      person.garage.tesla
     }).toThrowError()
   })
 
   test('se puede acceder a propiedades existentes de un objeto', () => {
     const safeObj = createSafe({
-      foo: 'bar',
-      baz: {
-        qux: 'quux'
+      name: 'César',
+      company: {
+        name: 'Autentia'
       }
     })
 
-    expect(safeObj.foo).toEqual('bar')
+    expect(safeObj.company.name).toEqual('Autentia')
   })
 
   test('no lanza excepción cuando se acceden a propiedades no existentes de un objeto', () => {
-    const safeObj = createSafe({
-      foo: 'bar',
-      baz: {
-        qux: 'quux'
+    const safePerson = createSafe({
+      name: 'César',
+      company: {
+        name: 'Autentia'
       }
     })
 
     expect(() => {
-      safeObj.qux.quux
+      safePerson.garage.tesla
     }).not.toThrowError()
   })
 
   test('no lanza excepción cuando se acceden a propiedades anidadas no existentes de un objeto', () => {
-    const safeObj = createSafe({
-      foo: 'bar',
-      baz: {
-        qux: 'quux'
+    const safePerson = createSafe({
+      name: 'César',
+      company: {
+        name: 'Autentia'
       }
     })
 
     expect(() => {
-      safeObj.baz.quux.quuux
+      safePerson.garage.tesla.modelS
     }).not.toThrowError()
   })
 
   test('puede tener valores por defecto', () => {
-    const safeObj = createSafe({
-      foo: 'bar',
-      baz: {
-        qux: 'quux'
+    const safePerson = createSafe({
+      name: 'César',
+      company: {
+        name: 'Autentia'
       }
     })
 
-    expect(either(safeObj.qux.quux, 'foo')).toBe('foo')
+    expect(either(safePerson.company.foosball, 'ping-pong')).toBe('ping-pong')
   })
 })
