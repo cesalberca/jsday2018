@@ -8,8 +8,8 @@
 </body>
 <script src="https://unpkg.com/diff-dom@2.4.0/diffDOM.js"></script>
 <script type="module">
-import { Renderer, html } from './main.mjs'
-import { createObservable, observe } from './observable.mjs'
+import { Renderer, html } from './main.js'
+import { createObservable, observe } from '../observable/observable.js'
 
 const renderer = new Renderer(document.body)
 const observable = createObservable(({ counter: 0 }))

@@ -1,3 +1,5 @@
+import { taggedTemplate } from '../taggedTemplate/taggedTemplate.js'
+
 export class Renderer {
   constructor(container) {
     this.diffDom = new diffDOM()
@@ -12,5 +14,4 @@ export class Renderer {
   }
 }
 
-export const html = (strings, ...values) =>
-  strings.reduce((template, string, i) => template + string + (values[i] || ''), '')
+export { taggedTemplate as html }

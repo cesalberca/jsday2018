@@ -2,7 +2,7 @@ import { observe, createObservable } from '../observable'
 import { flushPromises } from '../../../tests/utils/flushPromises'
 
 describe('observable', () => {
-  test('se ejecuta la función que observa de nuevo cuando el valor observado cambia', async () => {
+  test('se ejecuta la función que observa nuevamente cuando el valor observado cambia', async () => {
     expect.assertions(1)
     const person = createObservable({ name: 'John' })
 
