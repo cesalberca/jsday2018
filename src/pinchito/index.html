@@ -6,17 +6,20 @@
 </head>
 <body>
 </body>
+<script src="https://unpkg.com/diff-dom@2.4.0/diffDOM.js"></script>
 <script type="module">
 import { Renderer, html } from './main.mjs'
 import { createObservable, observe } from './observable.mjs'
-import { pipe } from './pipe.mjs'
-import { createLogger } from './logger.mjs'
 
 const renderer = new Renderer(document.body)
-const observableLogger = pipe(createObservable, createLogger)
-const observable = observableLogger(({ counter: 0 }))
+const observable = createObservable(({ counter: 0 }))
 
-observe(() => renderer.render(html`<h1>Counter: ${observable.counter}</h1>`))
+observe(() => renderer.render(
+  html`
+    <h1>Counter: ${observable.counter}</h1>
+    <span>This won't re-render</span>
+  `
+))
 
 setInterval(() => {
   observable.counter++

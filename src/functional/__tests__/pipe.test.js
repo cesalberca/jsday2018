@@ -14,7 +14,7 @@ describe('pipe', () => {
     expect(result).toBe(3)
   })
 
-  test('ejecuta primero a la primera función', () => {
+  test('invoca primero a la primera función', () => {
     const fnMock = jest.fn()
 
     const functions = [() => fnMock('first'), () => fnMock('second')]
