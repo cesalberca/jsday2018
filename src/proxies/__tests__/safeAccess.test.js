@@ -15,14 +15,14 @@ describe('safeAccess', () => {
   })
 
   test('se puede acceder a propiedades existentes de un objeto', () => {
-    const safeObj = createSafe({
+    const safePerson = createSafe({
       name: 'César',
       company: {
         name: 'Autentia'
       }
     })
 
-    expect(safeObj.company.name).toEqual('Autentia')
+    expect(safePerson.company.name).toEqual('Autentia')
   })
 
   test('no lanza excepción cuando se acceden a propiedades no existentes de un objeto', () => {

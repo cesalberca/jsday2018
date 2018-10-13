@@ -1,5 +1,5 @@
 export function isRequired() {
-  throw new TypeError('Prop is required')
+  throw new TypeError('Argument is required')
 }
 
 export function capitalize(string = isRequired()) {
