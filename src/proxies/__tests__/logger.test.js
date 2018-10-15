@@ -60,7 +60,7 @@ describe('logger', () => {
 
     await asyncFunctionLogger('test')
 
-    expect(loggerStub.time).toHaveBeenCalledWith('Execution of asyncCapitalize in')
-    expect(loggerStub.timeEnd).toHaveBeenCalledWith('Execution of asyncCapitalize in')
+    expect(loggerStub.time).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Function]')
+    expect(loggerStub.timeEnd).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Function]')
   })
 })

@@ -10,6 +10,6 @@ export async function asyncCapitalize(string = isRequired()) {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(capitalize(string))
-    }, 1000)
+    }, Math.random() * 1000 + 500)
   })
 }
