@@ -61,7 +61,7 @@ describe('pipe', () => {
     const safeObservableLoggerObject = safeObservableLogger(person)
     safeObservableLoggerObject.name
 
-    expect(logger.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object] (Prop: name) {Result: César}')
+    expect(logger.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [object] (Prop: name) {Result: César}')
   })
 
   test('aplica el safe correctamente correctamente', () => {

@@ -1,7 +1,5 @@
-import { capitalize } from '../defaultParameters/propValidator'
-
 export function createLogger(target, logger = console) {
-  const message = `${new Date().toISOString()} [${capitalize(typeof target)}]`
+  const message = `${new Date().toISOString()} [${typeof target}]`
 
   const handler = {
     get(target, prop) {

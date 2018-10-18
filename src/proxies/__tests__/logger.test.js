@@ -18,7 +18,7 @@ describe('logger', () => {
     functionLogger('test')
 
     expect(loggerStub.log).toHaveBeenCalledWith(
-      '2018-10-10T12:34:56.000Z [Function] capitalize (Args: test) {Result: Test}'
+      '2018-10-10T12:34:56.000Z [function] capitalize (Args: test) {Result: Test}'
     )
   })
 
@@ -32,7 +32,7 @@ describe('logger', () => {
 
     objectLogger.a
 
-    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object] (Prop: a) {Result: 1}')
+    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [object] (Prop: a) {Result: 1}')
   })
 
   test('hace un log cuando se accede a un elemento de un array', () => {
@@ -45,7 +45,7 @@ describe('logger', () => {
 
     arrayLogger[0]
 
-    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Object] (Prop: 0) {Result: 1}')
+    expect(loggerStub.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [object] (Prop: 0) {Result: 1}')
   })
 
   test('realiza un log cuando se ejecuta una función asíncrona', async () => {
@@ -60,7 +60,7 @@ describe('logger', () => {
 
     await asyncFunctionLogger('test')
 
-    expect(loggerStub.time).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Function]')
-    expect(loggerStub.timeEnd).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [Function]')
+    expect(loggerStub.time).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [function]')
+    expect(loggerStub.timeEnd).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [function]')
   })
 })
