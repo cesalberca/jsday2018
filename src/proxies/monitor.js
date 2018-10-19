@@ -1,7 +1,7 @@
 import '@babel/polyfill'
 
 import { createLogger } from './logger'
-import { asyncCapitalize } from '../defaultParameters/propValidator'
+import { capitalize } from '../defaultParameters/propValidator'
 ;(async () => {
   const asyncFunctionLogger = createLogger(asyncCapitalize)
   const promises = [
@@ -16,3 +16,11 @@ import { asyncCapitalize } from '../defaultParameters/propValidator'
     console.warn(result)
   }
 })()
+
+async function asyncCapitalize(string) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(capitalize(string))
+    }, Math.random() * 1000 + 500)
+  })
+}

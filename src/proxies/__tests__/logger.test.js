@@ -1,5 +1,5 @@
 import { createLogger } from '../logger'
-import { asyncCapitalize, capitalize } from '../../defaultParameters/propValidator'
+import { capitalize } from '../../defaultParameters/propValidator'
 import { mockDate, RealDate } from '../../../tests/utils/mockDate'
 
 describe('logger', () => {
@@ -56,9 +56,9 @@ describe('logger', () => {
       timeEnd: jest.fn()
     }
 
-    const asyncFunctionLogger = createLogger(asyncCapitalize, loggerStub)
+    const asyncFunctionLogger = createLogger(() => Promise.resolve(), loggerStub)
 
-    await asyncFunctionLogger('test')
+    await asyncFunctionLogger()
 
     expect(loggerStub.time).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [function]')
     expect(loggerStub.timeEnd).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [function]')

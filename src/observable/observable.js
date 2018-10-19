@@ -9,6 +9,7 @@ export function observe(fn) {
 
 export function createObservable(data) {
   observers.set(data, new Map())
+
   return new Proxy(data, {
     get(target, key, receiver) {
       const result = Reflect.get(...arguments)
