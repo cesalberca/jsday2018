@@ -1,17 +1,25 @@
-import { taggedTemplate } from '../taggedTemplate/taggedTemplate.js'
+import { taggedTemplate as html } from '../taggedTemplate/taggedTemplate.js'
+import { createObservable, observe } from '../observable/observable.js'
 
-export class Renderer {
-  constructor(container) {
-    this.diffDom = new diffDOM()
-    this.container = container
-  }
-
-  render(string) {
-    const newElement = document.createElement('body')
-    newElement.innerHTML = string
-
-    this.diffDom.apply(this.container, this.diffDom.diff(this.container, newElement))
+export class Component {
+  constructor() {
+    this.data = createObservable(this)
   }
 }
 
-export { taggedTemplate as html }
+export function mount(component, container) {
+  const diffDom = new diffDOM()
+  renderTree(diffDom, component, container)
+
+  observe(() => {
+    renderTree(diffDom, component, container)
+  })
+}
+
+function renderTree(differ, component, container) {
+  const element = document.createElement('body')
+  element.innerHTML = component.render()
+  differ.apply(container, differ.diff(container, element))
+}
+
+export { html }
