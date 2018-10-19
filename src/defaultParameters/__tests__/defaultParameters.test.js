@@ -1,4 +1,4 @@
-import { multiply, sumAfterTaxes } from '../defaultParameters'
+import { multiply, priceAfterTaxes } from '../defaultParameters'
 
 describe('defaultParameters', () => {
   test('retorna la suma de dos valores cuando estos son pasados por parámetros', () => {
@@ -14,6 +14,6 @@ describe('defaultParameters', () => {
   })
 
   test('también se puede hacer uso de funciones', () => {
-    expect(sumAfterTaxes(10)).toBe(12.1)
+    expect(priceAfterTaxes(10)).toBe(12.1)
   })
 })
