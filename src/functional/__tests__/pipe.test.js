@@ -34,12 +34,12 @@ describe('pipe', () => {
     const upperCase = string => string.toUpperCase()
     const string = 'fus roh dah'
 
-    const exclamationDashUppercased = pipe(
-      exclamation,
+    const upperCasedDashedExclamation = pipe(
+      upperCase,
       dash,
-      upperCase
+      exclamation
     )
-    const result = exclamationDashUppercased(string)
+    const result = upperCasedDashedExclamation(string)
     expect(result).toBe('F-U-S R-O-H D-A-H!')
   })
 
