@@ -10,7 +10,7 @@ describe('observable', () => {
 
     observe(stub)
 
-    person.name = 'Dave'
+    person.name = 'Sara'
 
     await flushPromises()
     expect(stub).toHaveBeenCalled()
@@ -34,16 +34,16 @@ describe('observable', () => {
     expect.assertions(2)
     const person = createObservable({ name: 'Marta' })
 
-    const stub = jest.fn(() => person.name)
+    const stub1 = jest.fn(() => person.name)
     const stub2 = jest.fn(() => person.name)
 
-    observe(stub)
+    observe(stub1)
     observe(stub2)
 
     person.name = 'Laura'
 
     await flushPromises()
-    expect(stub).toHaveBeenCalled()
+    expect(stub1).toHaveBeenCalled()
     expect(stub2).toHaveBeenCalled()
   })
 

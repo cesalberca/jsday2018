@@ -7,10 +7,10 @@ export function observe(fn) {
   queueObserver(fn)
 }
 
-export function createObservable(data) {
-  observers.set(data, new Map())
+export function createObservable(observable) {
+  observers.set(observable, new Map())
 
-  return new Proxy(data, {
+  return new Proxy(observable, {
     get(target, key, receiver) {
       const result = Reflect.get(...arguments)
 

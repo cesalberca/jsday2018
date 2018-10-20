@@ -25,21 +25,21 @@ describe('pipe', () => {
   })
 
   test('debe aplicar las funciones', () => {
-    const upperCase = string => string.toUpperCase()
+    const exclamation = string => `${string}!`
     const dash = string =>
       string
         .split(' ')
         .map(word => word.split('').join('-'))
         .join(' ')
-    const exclamation = string => `${string}!`
+    const upperCase = string => string.toUpperCase()
     const string = 'fus roh dah'
 
-    const uppercasedDashedExclamation = pipe(
-      upperCase,
+    const exclamationDashUppercased = pipe(
+      exclamation,
       dash,
-      exclamation
+      upperCase
     )
-    const result = uppercasedDashedExclamation(string)
+    const result = exclamationDashUppercased(string)
     expect(result).toBe('F-U-S R-O-H D-A-H!')
   })
 
@@ -64,7 +64,7 @@ describe('pipe', () => {
     expect(logger.log).toHaveBeenCalledWith('2018-10-10T12:34:56.000Z [object] (Prop: name) {Result: César}')
   })
 
-  test('aplica el safe correctamente correctamente', () => {
+  test('aplica el safe correctamente', () => {
     const person = {
       name: 'César',
       company: {
@@ -91,15 +91,15 @@ describe('pipe', () => {
     const stub = jest.fn(() => person.twitterFollowers)
     observe(stub)
 
-    const safeObservableLogger = pipe(
+    const safeObservable = pipe(
       createSafe,
       createObservable
     )
-    const safeObservableLoggerObject = safeObservableLogger(person)
-    safeObservableLoggerObject.twitterFollowers *= 10
+    const safeObservableObject = safeObservable(person)
+    safeObservableObject.twitterFollowers *= 10
     await flushPromises()
 
     expect(stub).toHaveBeenCalled()
-    expect(safeObservableLoggerObject.twitterFollowers).toBe(1000)
+    expect(safeObservableObject.twitterFollowers).toBe(1000)
   })
 })
