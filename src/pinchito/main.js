@@ -1,4 +1,4 @@
-import { taggedTemplate as html } from '../taggedTemplate/taggedTemplate.js'
+import { tag as html } from '../taggedTemplate/taggedTemplate.js'
 import { createObservable, observe } from '../observable/observable.js'
 
 export class Component {
