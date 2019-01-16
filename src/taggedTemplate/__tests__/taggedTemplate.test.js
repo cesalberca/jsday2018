@@ -1,6 +1,6 @@
 import { tag } from '../taggedTemplate'
 
-describe('tag', () => {
+describe('taggedTemplate', () => {
   test('retorna el string y un valor ya interpolado', () => {
     const string = 'World'
     const actual = tag`Hello ${string}`
@@ -8,10 +8,10 @@ describe('tag', () => {
   })
 
   test('tiene soporte para varios valores', () => {
-    const value1 = 'JSDay'
-    const value2 = '2018'
+    const value1 = 'World'
+    const value2 = 'again'
     const actual = tag`Hello ${value1} ${value2}!`
-    expect(actual).toEqual('Hello JSDay 2018!')
+    expect(actual).toEqual('Hello World again!')
   })
 
   test('admite expresiones', () => {
